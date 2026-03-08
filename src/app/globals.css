@@ -1,11 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Noto+Sans+JP:wght@400;700&family=Space+Grotesk:wght@400;700&display=swap');
+
 :root {
-  --color-bg: #0a0a1a;
+  --color-bg: #050510;
   --color-text: #e0e0e0;
   --color-accent: #7b5cff;
   --color-accent-hover: #9b7fff;
-  --color-card-bg: rgba(255, 255, 255, 0.05);
+  --color-card-bg: rgba(255, 255, 255, 0.04);
+  --color-teal: #00c8a0;
+  --color-orange: #e06030;
+  --color-pink: #ff5caa;
+  --color-cyan: #00bfff;
   --font-main: 'Noto Sans JP', sans-serif;
   --font-en: 'Space Grotesk', sans-serif;
+  --font-pixel: 'Press Start 2P', cursive;
 }
 
 * {
@@ -27,6 +34,21 @@ body {
   position: relative;
 }
 
+/* Cosmic background with nebula gradients */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 600px 400px at 15% 20%, rgba(224, 96, 48, 0.12), transparent),
+    radial-gradient(ellipse 500px 350px at 85% 15%, rgba(224, 96, 48, 0.1), transparent),
+    radial-gradient(ellipse 400px 300px at 70% 70%, rgba(0, 200, 160, 0.08), transparent),
+    radial-gradient(ellipse 300px 200px at 30% 80%, rgba(0, 191, 255, 0.06), transparent),
+    radial-gradient(ellipse 800px 600px at 50% 50%, rgba(123, 92, 255, 0.04), transparent);
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -34,6 +56,13 @@ a {
 
 img {
   image-rendering: pixelated;
+}
+
+/* Pixel font heading */
+.pixel-title {
+  font-family: var(--font-pixel);
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 0 rgba(0,0,0,0.5);
 }
 
 /* Star twinkle animation */
@@ -51,6 +80,16 @@ img {
   50% { opacity: 1; }
 }
 
+/* Constellation star (bright node) */
+.constellation-star {
+  width: 6px;
+  height: 6px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 8px 2px rgba(200, 220, 255, 0.6);
+  position: absolute;
+}
+
 /* Nebula glow effect */
 .nebula {
   position: absolute;
@@ -61,28 +100,22 @@ img {
   animation: nebulaPulse 8s ease-in-out infinite;
 }
 
-.nebula--purple {
-  background: radial-gradient(circle, #7b5cff, transparent);
-}
-
-.nebula--blue {
-  background: radial-gradient(circle, #00bfff, transparent);
-}
-
-.nebula--pink {
-  background: radial-gradient(circle, #ff5caa, transparent);
-}
+.nebula--purple { background: radial-gradient(circle, #7b5cff, transparent); }
+.nebula--blue { background: radial-gradient(circle, #00bfff, transparent); }
+.nebula--pink { background: radial-gradient(circle, #ff5caa, transparent); }
+.nebula--orange { background: radial-gradient(circle, #e06030, transparent); }
+.nebula--teal { background: radial-gradient(circle, #00c8a0, transparent); }
 
 @keyframes nebulaPulse {
   0%, 100% { opacity: 0.1; transform: scale(1); }
   50% { opacity: 0.2; transform: scale(1.1); }
 }
 
-/* Pixel decoration */
+/* Pixel grid overlay */
 .pixel-grid {
   background-image:
-    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
   background-size: 8px 8px;
 }
 
@@ -94,6 +127,78 @@ img {
     -2px -2px 0 var(--color-accent),
     2px -2px 0 var(--color-accent),
     -2px 2px 0 var(--color-accent);
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+.float {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Pixel planet - CSS art */
+.pixel-planet {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #8ecae6, #219ebc, #023047);
+  box-shadow:
+    inset -20px -10px 30px rgba(0,0,0,0.5),
+    0 0 40px rgba(142, 202, 230, 0.3),
+    0 0 80px rgba(142, 202, 230, 0.1);
+  position: relative;
+  image-rendering: pixelated;
+}
+
+.pixel-planet::before {
+  content: '';
+  position: absolute;
+  width: 180px;
+  height: 20px;
+  border: 2px solid rgba(142, 202, 230, 0.4);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-15deg);
+}
+
+/* Pixel rocket */
+.pixel-rocket {
+  font-size: 32px;
+  animation: rocketFloat 6s ease-in-out infinite;
+  filter: drop-shadow(0 0 8px rgba(255,100,50,0.4));
+}
+
+@keyframes rocketFloat {
+  0%, 100% { transform: translate(0, 0) rotate(-30deg); }
+  25% { transform: translate(5px, -8px) rotate(-28deg); }
+  50% { transform: translate(0, -15px) rotate(-32deg); }
+  75% { transform: translate(-5px, -8px) rotate(-30deg); }
+}
+
+/* Pixel space station */
+.pixel-station {
+  font-size: 40px;
+  animation: stationSpin 20s linear infinite;
+}
+
+@keyframes stationSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Asteroid float */
+.pixel-asteroid {
+  animation: asteroidDrift 12s ease-in-out infinite;
+}
+
+@keyframes asteroidDrift {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  33% { transform: translate(10px, -5px) rotate(15deg); }
+  66% { transform: translate(-5px, 5px) rotate(-10deg); }
 }
 
 /* Scroll fade-in animation */
@@ -165,6 +270,28 @@ section {
 .accent-line {
   width: 60px;
   height: 3px;
-  background: linear-gradient(90deg, var(--color-accent), #00bfff);
+  background: linear-gradient(90deg, var(--color-accent), var(--color-cyan));
   margin-bottom: 24px;
+}
+
+/* Constellation nav line */
+.constellation-line {
+  stroke: rgba(100, 200, 255, 0.3);
+  stroke-width: 1;
+  filter: drop-shadow(0 0 3px rgba(100, 200, 255, 0.3));
+}
+
+/* Shooting star */
+@keyframes shootingStar {
+  0% { transform: translateX(-100px) translateY(100px); opacity: 1; }
+  70% { opacity: 1; }
+  100% { transform: translateX(800px) translateY(-300px); opacity: 0; }
+}
+
+.shooting-star {
+  position: absolute;
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.8), transparent);
+  animation: shootingStar 3s ease-out infinite;
 }
