@@ -37,96 +37,134 @@ img {
 }
 
 /* Star twinkle animation */
+.star {
+  position: absolute;
+  border-radius: 50%;
+  background: #fff;
+  animation: twinkle var(--duration, 3s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+  opacity: 0;
+}
+
 @keyframes twinkle {
-  0%, 100% { opacity: 0.3; }
+  0%, 100% { opacity: 0.2; }
   50% { opacity: 1; }
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-}
-
-@keyframes nebulaPulse {
-  0%, 100% { opacity: 0.15; }
-  50% { opacity: 0.25; }
-}
-
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(24px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* Nebula background for hero */
+/* Nebula glow effect */
 .nebula {
   position: absolute;
   border-radius: 50%;
   filter: blur(80px);
-  animation: nebulaPulse 8s ease-in-out infinite;
+  opacity: 0.15;
   pointer-events: none;
-  z-index: 0;
+  animation: nebulaPulse 8s ease-in-out infinite;
 }
 
-.nebula-1 {
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(123, 92, 255, 0.3), transparent 70%);
-  top: -100px;
-  left: -200px;
+.nebula--purple {
+  background: radial-gradient(circle, #7b5cff, transparent);
 }
 
-.nebula-2 {
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(56, 182, 255, 0.2), transparent 70%);
-  top: 200px;
-  right: -150px;
-  animation-delay: 3s;
+.nebula--blue {
+  background: radial-gradient(circle, #00bfff, transparent);
 }
 
-.nebula-3 {
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, rgba(255, 92, 182, 0.15), transparent 70%);
-  bottom: 100px;
-  left: 30%;
-  animation-delay: 5s;
+.nebula--pink {
+  background: radial-gradient(circle, #ff5caa, transparent);
 }
 
-/* Section fade in */
-.fade-in {
-  animation: slideUp 0.8s ease-out forwards;
+@keyframes nebulaPulse {
+  0%, 100% { opacity: 0.1; transform: scale(1); }
+  50% { opacity: 0.2; transform: scale(1.1); }
 }
 
 /* Pixel decoration */
-.pixel-dot {
-  width: 4px;
-  height: 4px;
-  background: var(--color-accent);
-  position: absolute;
-  image-rendering: pixelated;
+.pixel-grid {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 8px 8px;
 }
 
-/* Star styles */
-.star {
-  position: absolute;
-  background: #fff;
-  border-radius: 50%;
-  animation: twinkle var(--duration, 3s) ease-in-out infinite;
-  animation-delay: var(--delay, 0s);
+/* Pixel border utility */
+.pixel-border {
+  border: 2px solid var(--color-accent);
+  box-shadow:
+    2px 2px 0 var(--color-accent),
+    -2px -2px 0 var(--color-accent),
+    2px -2px 0 var(--color-accent),
+    -2px 2px 0 var(--color-accent);
 }
 
-/* Scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
+/* Scroll fade-in animation */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
 }
-::-webkit-scrollbar-track {
-  background: var(--color-bg);
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
-::-webkit-scrollbar-thumb {
-  background: rgba(123, 92, 255, 0.3);
-  border-radius: 3px;
+
+/* Glitch text effect */
+.glitch {
+  position: relative;
+  display: inline-block;
 }
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(123, 92, 255, 0.5);
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.8;
+}
+
+.glitch::before {
+  color: #ff5caa;
+  animation: glitch1 3s infinite;
+  clip-path: inset(0 0 60% 0);
+}
+
+.glitch::after {
+  color: #00bfff;
+  animation: glitch2 3s infinite;
+  clip-path: inset(40% 0 0 0);
+}
+
+@keyframes glitch1 {
+  0%, 95% { transform: translate(0); }
+  96% { transform: translate(-3px, 1px); }
+  97% { transform: translate(3px, -1px); }
+  98% { transform: translate(-1px, 2px); }
+  99% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+}
+
+@keyframes glitch2 {
+  0%, 95% { transform: translate(0); }
+  96% { transform: translate(3px, -1px); }
+  97% { transform: translate(-3px, 1px); }
+  98% { transform: translate(1px, -2px); }
+  99% { transform: translate(-2px, 2px); }
+  100% { transform: translate(0); }
+}
+
+/* Section spacing */
+section {
+  position: relative;
+  z-index: 1;
+}
+
+/* Accent line */
+.accent-line {
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-accent), #00bfff);
+  margin-bottom: 24px;
 }
