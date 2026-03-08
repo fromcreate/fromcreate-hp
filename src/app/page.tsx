@@ -1,10 +1,10 @@
 import Link from 'next/link';
 
 const services = [
-  { title: '映像制作', desc: 'PR・YouTube・SNS・MV・広告動画を企画から編集までワンストップで。', href: '/services' },
-  { title: 'SNS運用代行', desc: '企画・台本・撮影・編集・投稿・分析まで一貫対応。', href: '/services' },
-  { title: 'コミュニティ', desc: '動画編集者向けコミュニティ。案件・スキル・交流を一体化。', href: '/services' },
-  { title: 'AEスクール', desc: 'After Effectsを未経験から実務レベルまで習得。', href: '/services' },
+  { title: '映像制作', desc: 'PR・YouTube・SNS・MV・広告動画を企画から編集までワンストップで。', href: '/services', icon: '▶' },
+  { title: 'SNS運用代行', desc: '企画・台本・撮影・編集・投稿・分析まで一貫対応。', href: '/services', icon: '◆' },
+  { title: 'コミュニティ', desc: '動画編集者向けコミュニティ。案件・スキル・交流を一体化。', href: '/services', icon: '●' },
+  { title: 'AEスクール', desc: 'After Effectsを未経験から実務レベルまで習得。', href: '/services', icon: '★' },
 ];
 
 const strengths = [
@@ -17,111 +17,156 @@ export default function Home() {
   return (
     <main>
       {/* HERO */}
-      <section style={{
-        minHeight: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        textAlign: 'center',
-        padding: '0 24px',
-      }}>
-        <h1 style={{
-          fontSize: 'clamp(26px, 4vw, 44px)',
-          lineHeight: 1.2,
-          marginBottom: '16px',
-        }}>
-          理想を、現実にする映像・SNSクリエイティブチーム。
-        </h1>
-        <p style={{ fontSize: 'clamp(15px, 2vw, 18px)', opacity: 0.7, maxWidth: '640px', marginBottom: '32px' }}>
-          映像制作／SNS運用／クリエイターコミュニティ／AEスクールで、あなたの「やりたい」を現実に変えるパートナーです。
-        </p>
-        <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', justifyContent: 'center' }}>
-          <Link href="/contact" style={{
-            padding: '16px 40px', background: '#7b5cff', color: '#fff',
-            borderRadius: '8px', fontSize: '16px', fontWeight: 600,
-          }}>無料相談してみる</Link>
-          <Link href="/works" style={{
-            padding: '16px 40px', border: '1px solid rgba(255,255,255,0.3)',
-            borderRadius: '8px', fontSize: '16px', color: '#fff',
-          }}>実績を見てみる</Link>
-        </div>
-      </section>
+      <section
+        className="pixel-grid"
+        style={{
+          minHeight: '100vh',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          textAlign: 'center',
+          padding: '120px 24px 80px',
+          position: 'relative',
+          overflow: 'hidden',
+        }}
+      >
+        {/* Nebula decorations */}
+        <div className="nebula nebula--purple" style={{ width: 400, height: 400, top: '10%', left: '-5%' }} />
+        <div className="nebula nebula--blue" style={{ width: 300, height: 300, bottom: '10%', right: '-5%' }} />
+        <div className="nebula nebula--pink" style={{ width: 200, height: 200, top: '50%', left: '60%' }} />
 
-      {/* MISSION */}
-      <section style={{ padding: '96px 80px', maxWidth: '1280px', margin: '0 auto' }}>
-        <h2 style={{ fontSize: '28px', marginBottom: '16px' }}>Mission — 理想を、現実に。</h2>
-        <p style={{ fontSize: '16px', lineHeight: 1.8, opacity: 0.8, maxWidth: '720px' }}>
-          理想は、形にして届けてこそ価値になる。映像と仕組みで、人と企業の可能性を最大化する。
+        <p style={{
+          fontFamily: 'var(--font-en)',
+          fontSize: '14px',
+          letterSpacing: '4px',
+          color: 'var(--color-accent)',
+          marginBottom: '16px',
+          textTransform: 'uppercase',
+        }}>
+          FR0M CREATE
         </p>
-        <Link href="/about" style={{ display: 'inline-block', marginTop: '24px', color: '#7b5cff', fontSize: '14px' }}>
-          私たちの想いを見る &rarr;
+        <h1
+          className="glitch"
+          data-text="理想を、現実に。"
+          style={{
+            fontSize: 'clamp(32px, 6vw, 72px)',
+            fontWeight: 700,
+            letterSpacing: '0.05em',
+            lineHeight: 1.2,
+            marginBottom: '24px',
+          }}
+        >
+          理想を、現実に。
+        </h1>
+        <p style={{
+          fontSize: '16px',
+          maxWidth: '600px',
+          opacity: 0.7,
+          marginBottom: '40px',
+          lineHeight: 1.8,
+        }}>
+          映像制作×SNS運用×クリエイターコミュニティで、あなたのビジョンを形に。
+        </p>
+        <Link
+          href="/contact"
+          className="pixel-border"
+          style={{
+            display: 'inline-block',
+            padding: '14px 40px',
+            background: 'var(--color-accent)',
+            color: '#fff',
+            fontWeight: 700,
+            fontSize: '15px',
+            letterSpacing: '0.1em',
+            transition: 'all 0.3s',
+          }}
+        >
+          お問い合わせ
         </Link>
       </section>
 
       {/* SERVICES */}
-      <section style={{ padding: '96px 80px', maxWidth: '1280px', margin: '0 auto' }}>
-        <h2 style={{ fontSize: '28px', marginBottom: '48px' }}>Services</h2>
+      <section style={{ padding: '100px 24px', maxWidth: '1200px', margin: '0 auto' }}>
+        <div className="accent-line" />
+        <p style={{ fontFamily: 'var(--font-en)', fontSize: '13px', letterSpacing: '3px', color: 'var(--color-accent)', marginBottom: '8px' }}>SERVICES</p>
+        <h2 style={{ fontSize: '28px', fontWeight: 700, marginBottom: '48px' }}>事業内容</h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '24px' }}>
           {services.map((s) => (
-            <Link key={s.title} href={s.href} style={{
-              padding: '32px', background: 'rgba(255,255,255,0.05)',
-              borderRadius: '12px', border: '1px solid rgba(255,255,255,0.08)',
-            }}>
-              <h3 style={{ fontSize: '20px', marginBottom: '12px' }}>{s.title}</h3>
-              <p style={{ fontSize: '14px', opacity: 0.7, lineHeight: 1.6 }}>{s.desc}</p>
+            <Link
+              key={s.title}
+              href={s.href}
+              style={{
+                background: 'var(--color-card-bg)',
+                border: '1px solid rgba(255,255,255,0.08)',
+                padding: '32px 24px',
+                transition: 'border-color 0.3s, transform 0.3s',
+                position: 'relative',
+                overflow: 'hidden',
+              }}
+            >
+              <span style={{ fontSize: '24px', display: 'block', marginBottom: '12px', color: 'var(--color-accent)' }}>{s.icon}</span>
+              <h3 style={{ fontSize: '18px', fontWeight: 700, marginBottom: '8px' }}>{s.title}</h3>
+              <p style={{ fontSize: '14px', opacity: 0.7, lineHeight: 1.7 }}>{s.desc}</p>
             </Link>
           ))}
         </div>
       </section>
 
-      {/* WORKS HIGHLIGHT */}
-      <section style={{ padding: '96px 80px', maxWidth: '1280px', margin: '0 auto' }}>
-        <h2 style={{ fontSize: '28px', marginBottom: '16px' }}>Works — Selected Missions</h2>
-        <p style={{ fontSize: '14px', opacity: 0.6, marginBottom: '48px' }}>
-          YouTube、広告動画、MVなど、多様なジャンルの実績から一部を紹介。
-        </p>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '24px' }}>
-          {[1, 2, 3].map((i) => (
-            <div key={i} style={{
-              aspectRatio: '16/9', background: 'rgba(255,255,255,0.05)',
-              borderRadius: '12px', display: 'flex', alignItems: 'center',
-              justifyContent: 'center', color: 'rgba(255,255,255,0.3)',
-            }}>
-              Coming Soon
-            </div>
-          ))}
-        </div>
-        <Link href="/works" style={{ display: 'inline-block', marginTop: '32px', color: '#7b5cff', fontSize: '14px' }}>
-          すべての実績を見る &rarr;
-        </Link>
-      </section>
-
       {/* STRENGTHS */}
-      <section style={{ padding: '96px 80px', maxWidth: '1280px', margin: '0 auto' }}>
-        <h2 style={{ fontSize: '28px', marginBottom: '48px' }}>Why FR0M CREATE?</h2>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '32px' }}>
-          {strengths.map((s) => (
-            <div key={s.title} style={{ padding: '24px 0' }}>
-              <h3 style={{ fontSize: '20px', marginBottom: '12px' }}>{s.title}</h3>
-              <p style={{ fontSize: '14px', opacity: 0.7, lineHeight: 1.6 }}>{s.desc}</p>
-            </div>
-          ))}
+      <section className="pixel-grid" style={{ padding: '100px 24px', position: 'relative' }}>
+        <div className="nebula nebula--blue" style={{ width: 350, height: 350, top: '20%', right: '10%' }} />
+        <div style={{ maxWidth: '1200px', margin: '0 auto', position: 'relative', zIndex: 1 }}>
+          <div className="accent-line" />
+          <p style={{ fontFamily: 'var(--font-en)', fontSize: '13px', letterSpacing: '3px', color: 'var(--color-accent)', marginBottom: '8px' }}>STRENGTHS</p>
+          <h2 style={{ fontSize: '28px', fontWeight: 700, marginBottom: '48px' }}>FR0M CREATEの強み</h2>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '32px' }}>
+            {strengths.map((s, i) => (
+              <div
+                key={s.title}
+                style={{
+                  padding: '32px',
+                  borderLeft: '3px solid var(--color-accent)',
+                  background: 'var(--color-card-bg)',
+                }}
+              >
+                <span style={{ fontFamily: 'var(--font-en)', fontSize: '48px', fontWeight: 700, color: 'var(--color-accent)', opacity: 0.3, display: 'block', marginBottom: '8px' }}>0{i + 1}</span>
+                <h3 style={{ fontSize: '18px', fontWeight: 700, marginBottom: '12px' }}>{s.title}</h3>
+                <p style={{ fontSize: '14px', opacity: 0.7, lineHeight: 1.7 }}>{s.desc}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* CTA */}
       <section style={{
-        padding: '96px 80px', textAlign: 'center',
+        padding: '100px 24px',
+        textAlign: 'center',
+        position: 'relative',
       }}>
-        <h2 style={{ fontSize: '24px', marginBottom: '16px' }}>映像やSNSのことで相談してみたい方へ。</h2>
-        <p style={{ fontSize: '15px', opacity: 0.7, marginBottom: '32px' }}>
-          企画段階の相談でもOKです。まずはお気軽にご連絡ください。
-        </p>
-        <Link href="/contact" style={{
-          padding: '16px 48px', background: '#7b5cff', color: '#fff',
-          borderRadius: '8px', fontSize: '16px', fontWeight: 600,
-        }}>問い合わせページへ</Link>
+        <div className="nebula nebula--purple" style={{ width: 300, height: 300, top: '30%', left: '20%' }} />
+        <div style={{ position: 'relative', zIndex: 1 }}>
+          <h2 style={{ fontSize: '28px', fontWeight: 700, marginBottom: '16px' }}>お気軽にご相談ください</h2>
+          <p style={{ fontSize: '15px', opacity: 0.7, marginBottom: '32px', maxWidth: '500px', margin: '0 auto 32px' }}>
+            映像制作・コミュニティ・スクールについて、まずはお話をお聞かせください。
+          </p>
+          <Link
+            href="/contact"
+            className="pixel-border"
+            style={{
+              display: 'inline-block',
+              padding: '14px 40px',
+              background: 'var(--color-accent)',
+              color: '#fff',
+              fontWeight: 700,
+              fontSize: '15px',
+              letterSpacing: '0.1em',
+            }}
+          >
+            お問い合わせはこちら
+          </Link>
+        </div>
       </section>
     </main>
   );
